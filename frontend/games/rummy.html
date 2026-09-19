@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rummy - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .card {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 54px; height: 76px;
+    background: #f4f1de; color: #111;
+    border-radius: 8px; font-weight: 800; font-size: 1.1rem;
+    border: 2px solid transparent; cursor: pointer; user-select: none;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+  }
+  .card.red { color: #c0392b; }
+  .card.selected { border-color: var(--accent-2); transform: translateY(-8px); }
+  .card.facedown { background: linear-gradient(135deg, #4a3f8f, #2b245c); color: transparent; }
+  .card.pile-card { width: 60px; height: 84px; font-size: 1.3rem; }
+  .hand-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; padding: 10px 0; }
+  .table-row { display: flex; gap: 30px; justify-content: center; align-items: center; margin: 16px 0; }
+  .opponents { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-bottom: 14px; }
+  .opponent-tile { background: var(--bg-alt); border-radius: 10px; padding: 10px 14px; font-size: 0.85rem; text-align: center; }
+  .opponent-tile.turn { outline: 2px solid var(--good); }
+  .opponent-tile.teamA { border-left: 4px solid #00d2ff; }
+  .opponent-tile.teamB { border-left: 4px solid #ffd166; }
+  .team-select { display: flex; gap: 10px; justify-content: center; margin: 10px 0; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🃏 Rummy</h1>
+    <p>Simplified 13-card Rummy (no jokers). 2-6 players. Enable Team Mode to play group vs group.</p>
+
+    <div class="panel" id="lobbyPanel">
+      <label class="row" style="gap:8px;">
+        <input type="checkbox" id="teamModeCheck" /> Team Mode (group vs group)
+      </label>
+      <div class="team-select" id="teamSelect" style="display:none;">
+        <label><input type="radio" name="team" value="0" checked /> Team A</label>
+        <label><input type="radio" name="team" value="1" /> Team B</label>
+      </div>
+      <div class="row">
+        <button class="btn" id="createRoomBtn">Create Room</button>
+        <input type="text" id="joinCodeInput" placeholder="Room code" maxlength="5" style="text-transform:uppercase;" />
+        <button class="btn secondary" id="joinRoomBtn">Join Room</button>
+      </div>
+      <div id="roomInfo" style="margin-top:14px;"></div>
+      <button class="btn" id="startGameBtn" style="display:none; margin-top:10px;">Start Game</button>
+    </div>
+
+    <div class="panel" id="gamePanel" style="display:none;">
+      <p class="status-line" id="status"></p>
+      <div class="opponents" id="opponents"></div>
+
+      <div class="table-row">
+        <div style="text-align:center;">
+          <div>Draw pile</div>
+          <div class="card facedown pile-card" id="drawPileBtn"></div>
+          <div id="drawPileCount"></div>
+        </div>
+        <div style="text-align:center;">
+          <div>Discard pile</div>
+          <div class="card pile-card" id="discardPileBtn"></div>
+        </div>
+      </div>
+
+      <div class="row" style="justify-content:center; gap:12px;">
+        <button class="btn secondary" id="declareModeBtn">Declare Mode: Off</button>
+        <button class="btn" id="declareBtn" style="display:none;">Declare (<span id="selCount">0</span>/13)</button>
+      </div>
+
+      <h3 style="text-align:center;">Your hand</h3>
+      <div class="hand-row" id="hand"></div>
+    </div>
+
+    <div class="panel" id="resultPanel" style="display:none;"></div>
+  </div>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="../js/socket-client.js"></script>
+  <script src="../js/games/rummy.js"></script>
+</body>
+</html>

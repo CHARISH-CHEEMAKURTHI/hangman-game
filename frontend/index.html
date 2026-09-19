@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcade Hub - Multi-Game Platform</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <a class="brand" href="/">
+      <span class="logo">🎮</span>
+      <span>Arcade <span class="gradient">Hub</span></span>
+    </a>
+    <div class="nickname-box">
+      <label for="nickname">Playing as</label>
+      <input type="text" id="nickname" maxlength="20" placeholder="Your name" />
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="hero">
+      <h1>One platform, many small games</h1>
+      <p>
+        Play solo, battle a friend on the same screen, challenge someone online 1v1,
+        or team up for group games like Rummy. Pick a game below to get started.
+      </p>
+    </section>
+
+    <div class="game-grid" id="gameGrid"></div>
+  </div>
+
+  <footer>Arcade Hub &middot; built on top of the original Hangman project</footer>
+
+  <script>
+    const GAMES = [
+      { key: "hangman", name: "Hangman", emoji: "🪢", href: "games/hangman.html",
+        desc: "Guess the word before the drawing is complete. Play solo or set a secret word for a friend online.",
+        tags: ["Solo", "Online 1v1"] },
+      { key: "tictactoe", name: "Tic-Tac-Toe", emoji: "❌", href: "games/tictactoe.html",
+        desc: "The classic 3x3 grid game. Play a friend locally, challenge the AI, or go online 1v1.",
+        tags: ["Local 2P", "vs AI", "Online 1v1"] },
+      { key: "connect4", name: "Connect Four", emoji: "🔴", href: "games/connect4.html",
+        desc: "Drop discs and line up four in a row. Local, vs AI, or online multiplayer.",
+        tags: ["Local 2P", "vs AI", "Online 1v1"] },
+      { key: "chess", name: "Chess", emoji: "♟️", href: "games/chess.html",
+        desc: "Full rules chess with check, checkmate, castling, en passant and promotion.",
+        tags: ["Local 2P", "Online 1v1"] },
+      { key: "rps", name: "Rock Paper Scissors", emoji: "✂️", href: "games/rps.html",
+        desc: "Best-of-5 online showdown against a friend.",
+        tags: ["Online 1v1"] },
+      { key: "snake", name: "Snake", emoji: "🐍", href: "games/snake.html",
+        desc: "Classic grid snake. Eat, grow, don't hit yourself.",
+        tags: ["Solo"] },
+      { key: "memory", name: "Memory Match", emoji: "🧠", href: "games/memory.html",
+        desc: "Flip cards and find every pair. Play solo or pass-and-play with a friend.",
+        tags: ["Solo", "Local 2P"] },
+      { key: "runner", name: "Subway Dash", emoji: "🏃", href: "games/runner.html",
+        desc: "Lane-switching endless runner. Dodge trains, jump, slide, and beat your high score.",
+        tags: ["Solo"] },
+      { key: "tank", name: "Tank Battle", emoji: "🛡️", href: "games/tank-battle.html",
+        desc: "Arcade tank shooter. Battle a friend split-keyboard or take on the AI.",
+        tags: ["Local 2P", "vs AI"] },
+      { key: "carrom", name: "Carrom", emoji: "🟤", href: "games/carrom.html",
+        desc: "Simplified 2D physics carrom board. Aim the striker and pocket your coins.",
+        tags: ["Local 2P"] },
+      { key: "rummy", name: "Rummy", emoji: "🃏", href: "games/rummy.html",
+        desc: "13-card Rummy for up to 6 players online, with team vs team scoring.",
+        tags: ["Online Group", "Team vs Team"] },
+      { key: "checkers", name: "Checkers", emoji: "⚫", href: "games/checkers.html",
+        desc: "Mandatory captures, multi-jump chains and king promotion. Local or online 1v1.",
+        tags: ["Local 2P", "Online 1v1"] },
+      { key: "reversi", name: "Reversi", emoji: "⚪", href: "games/reversi.html",
+        desc: "Flip your opponent's discs to dominate the board. Local, vs AI, or online.",
+        tags: ["Local 2P", "vs AI", "Online 1v1"] },
+      { key: "dotsboxes", name: "Dots and Boxes", emoji: "🔲", href: "games/dots-boxes.html",
+        desc: "Claim edges to complete boxes and score. Local or online 1v1.",
+        tags: ["Local 2P", "Online 1v1"] },
+      { key: "battleship", name: "Battleship", emoji: "🚢", href: "games/battleship.html",
+        desc: "Place your fleet in secret, then take turns firing until one fleet sinks.",
+        tags: ["Online 1v1"] },
+      { key: "ludo", name: "Ludo Race", emoji: "🎲", href: "games/ludo.html",
+        desc: "Simplified Ludo for 2-4 players — roll, race around the track, and send rivals home.",
+        tags: ["Online Group"] },
+      { key: "trivia", name: "Trivia Quiz", emoji: "🧩", href: "games/trivia.html",
+        desc: "Group trivia for up to 6 players. Faster correct answers score more points.",
+        tags: ["Online Group"] },
+      { key: "2048", name: "2048", emoji: "🔢", href: "games/2048.html",
+        desc: "Slide and merge tiles to reach 2048 (and beyond).",
+        tags: ["Solo"] },
+      { key: "minesweeper", name: "Minesweeper", emoji: "💣", href: "games/minesweeper.html",
+        desc: "Clear the board without detonating a mine. Three difficulty levels.",
+        tags: ["Solo"] },
+      { key: "breakout", name: "Breakout", emoji: "🧱", href: "games/breakout.html",
+        desc: "Bounce the ball and smash every brick without losing all your lives.",
+        tags: ["Solo"] },
+      { key: "pong", name: "Pong", emoji: "🏓", href: "games/pong.html",
+        desc: "The original paddle classic. Local 2P or vs AI.",
+        tags: ["Local 2P", "vs AI"] },
+      { key: "flappy", name: "Flappy Bird", emoji: "🐤", href: "games/flappy.html",
+        desc: "Tap to flap and squeeze through the pipes.",
+        tags: ["Solo"] },
+      { key: "simon", name: "Simon Says", emoji: "🎵", href: "games/simon.html",
+        desc: "Watch the color sequence, then repeat it back — how far can you go?",
+        tags: ["Solo"] },
+      { key: "sliding", name: "Sliding Puzzle", emoji: "🧩", href: "games/sliding-puzzle.html",
+        desc: "Classic 15-puzzle. Slide tiles into numerical order in as few moves as possible.",
+        tags: ["Solo"] },
+      { key: "whack", name: "Whack-a-Mole", emoji: "🔨", href: "games/whack-a-mole.html",
+        desc: "Whack the moles before they duck back down. 30-second reflex challenge.",
+        tags: ["Solo"] },
+      { key: "hanoi", name: "Tower of Hanoi", emoji: "🗼", href: "games/hanoi.html",
+        desc: "Move the whole stack to the last peg without ever placing a bigger disk on a smaller one.",
+        tags: ["Solo"] },
+      { key: "typing", name: "Typing Speed Test", emoji: "⌨️", href: "games/typing.html",
+        desc: "Measure your words-per-minute and accuracy against the clock.",
+        tags: ["Solo"] },
+      { key: "invaders", name: "Space Invaders", emoji: "👾", href: "games/space-invaders.html",
+        desc: "Classic arcade shooter. Defend against endless waves of descending aliens.",
+        tags: ["Solo"] },
+      { key: "sudoku", name: "Sudoku", emoji: "🔢", href: "games/sudoku.html",
+        desc: "Freshly generated, uniquely-solvable puzzles at three difficulty levels.",
+        tags: ["Solo"] },
+      { key: "wordguess", name: "Word Guess", emoji: "🟩", href: "games/word-guess.html",
+        desc: "Wordle-style 5-letter word guessing with green/yellow/gray feedback.",
+        tags: ["Solo"] },
+      { key: "airhockey", name: "Air Hockey", emoji: "🏒", href: "games/air-hockey.html",
+        desc: "Fast-paced 2D physics air hockey. First to 7 goals wins.",
+        tags: ["Local 2P"] },
+    ];
+
+    const tagClass = (tag) => {
+      if (tag.toLowerCase().includes("online")) return "tag multiplayer";
+      if (tag.toLowerCase().includes("team")) return "tag team";
+      return "tag";
+    };
+
+    const grid = document.getElementById("gameGrid");
+    grid.innerHTML = GAMES.map(
+      (g) => `
+      <a class="game-card" href="${g.href}">
+        <span class="emoji">${g.emoji}</span>
+        <h3>${g.name}</h3>
+        <p>${g.desc}</p>
+        <div class="tags">${g.tags.map((t) => `<span class="${tagClass(t)}">${t}</span>`).join("")}</div>
+      </a>`
+    ).join("");
+
+    const nickInput = document.getElementById("nickname");
+    nickInput.value = localStorage.getItem("mgp_nickname") || "";
+    nickInput.addEventListener("input", () => {
+      localStorage.setItem("mgp_nickname", nickInput.value.trim() || "Player");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Simon Says - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .simon-board {
+    display: grid; grid-template-columns: repeat(2, 130px); grid-template-rows: repeat(2, 130px);
+    gap: 10px; margin: 20px auto; width: fit-content;
+  }
+  .simon-pad { border-radius: 16px; cursor: pointer; opacity: 0.55; transition: opacity 0.1s; }
+  .simon-pad.lit { opacity: 1; box-shadow: 0 0 30px currentColor; }
+  .simon-pad.green { background: #2ecc71; color: #2ecc71; }
+  .simon-pad.red { background: #ff6b6b; color: #ff6b6b; }
+  .simon-pad.yellow { background: #ffd166; color: #ffd166; }
+  .simon-pad.blue { background: #00d2ff; color: #00d2ff; }
+  .simon-hud { text-align: center; font-size: 1.4rem; font-weight: 800; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🎵 Simon Says</h1>
+    <div class="panel" style="text-align:center;">
+      <div class="simon-hud">Round: <span id="round">0</span> &nbsp; Best: <span id="best">0</span></div>
+      <p class="status-line" id="status">Watch the sequence, then repeat it.</p>
+      <div class="simon-board" id="board">
+        <div class="simon-pad green" data-c="green"></div>
+        <div class="simon-pad red" data-c="red"></div>
+        <div class="simon-pad yellow" data-c="yellow"></div>
+        <div class="simon-pad blue" data-c="blue"></div>
+      </div>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn" id="startBtn">Start</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/games/simon.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sudoku - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .sudoku-board {
+    display: grid; grid-template-columns: repeat(9, 42px); grid-template-rows: repeat(9, 42px);
+    gap: 1px; background: #4a3f8f; padding: 2px; border-radius: 6px; margin: 16px auto;
+  }
+  .sudoku-cell {
+    background: #12183a; display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; font-weight: 700; color: var(--text); cursor: pointer;
+  }
+  .sudoku-cell.given { color: var(--text-dim); cursor: default; background: #171b38; }
+  .sudoku-cell.selected { background: var(--accent); color: white; }
+  .sudoku-cell.error { color: var(--bad); }
+  .sudoku-cell.border-right { border-right: 2px solid #4a3f8f; }
+  .sudoku-cell.border-bottom { border-bottom: 2px solid #4a3f8f; }
+  .sudoku-numpad { display: flex; gap: 6px; justify-content: center; margin-top: 12px; flex-wrap: wrap; }
+  .sudoku-numpad button { width: 40px; height: 40px; font-size: 1.1rem; background: var(--panel-light); border: none; border-radius: 8px; color: var(--text); cursor: pointer; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🔢 Sudoku</h1>
+    <div class="mode-tabs">
+      <button data-level="easy" class="active">Easy</button>
+      <button data-level="medium">Medium</button>
+      <button data-level="hard">Hard</button>
+    </div>
+    <div class="panel" style="text-align:center;">
+      <p class="status-line" id="status">Fill every row, column and 3x3 box with 1-9.</p>
+      <div class="sudoku-board" id="board"></div>
+      <div class="sudoku-numpad" id="numpad"></div>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="eraseBtn">Erase</button>
+        <button class="btn secondary" id="checkBtn">Check</button>
+        <button class="btn secondary" id="newGameBtn">New Puzzle</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/games/sudoku.js"></script>
+</body>
+</html>

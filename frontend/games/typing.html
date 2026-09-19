@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Typing Speed Test - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .typing-hud { display: flex; justify-content: center; gap: 30px; font-weight: 700; margin-bottom: 10px; }
+  .typing-text {
+    font-family: Consolas, monospace; font-size: 1.3rem; line-height: 1.8;
+    background: var(--bg-alt); border-radius: 10px; padding: 16px; margin: 16px 0;
+  }
+  .typing-text .correct { color: var(--good); }
+  .typing-text .wrong { color: var(--bad); text-decoration: underline; }
+  .typing-text .current { background: var(--accent); border-radius: 3px; }
+  #typingInput { width: 100%; font-size: 1.1rem; padding: 12px; font-family: Consolas, monospace; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>⌨️ Typing Speed Test</h1>
+    <div class="panel" style="text-align:center;">
+      <div class="typing-hud">
+        <div>WPM: <span id="wpm">0</span></div>
+        <div>Accuracy: <span id="accuracy">100</span>%</div>
+        <div>Time: <span id="timer">60</span>s</div>
+        <div>Best WPM: <span id="best">0</span></div>
+      </div>
+      <div class="typing-text" id="textDisplay"></div>
+      <input type="text" id="typingInput" placeholder="Click here and start typing..." autocomplete="off" />
+      <p class="status-line" id="status" style="margin-top:10px;">Start typing to begin the test.</p>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="restartBtn">New Text</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/games/typing.js"></script>
+</body>
+</html>

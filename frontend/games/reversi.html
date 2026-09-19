@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reversi - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .reversi-board {
+    display: inline-grid;
+    grid-template-columns: repeat(8, 52px);
+    grid-template-rows: repeat(8, 52px);
+    background: #0f6b3a; padding: 6px; border-radius: 8px; margin: 16px auto;
+    border: 4px solid #12183a;
+  }
+  .reversi-sq { width: 52px; height: 52px; border: 1px solid rgba(0,0,0,0.2); display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; }
+  .reversi-sq .dot { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.5); }
+  .reversi-disc { width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 3px 6px rgba(0,0,0,0.4); }
+  .reversi-disc.w { background: radial-gradient(circle at 35% 30%, #fff, #cfd3f0); }
+  .reversi-disc.b { background: radial-gradient(circle at 35% 30%, #555, #111); }
+  .reversi-hud { display: flex; justify-content: center; gap: 40px; font-weight: 700; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>⚪ Reversi</h1>
+
+    <div class="mode-tabs">
+      <button data-mode="local" class="active">Local 2P</button>
+      <button data-mode="ai">vs AI</button>
+      <button data-mode="online">Online 1v1</button>
+    </div>
+
+    <div class="panel" id="onlinePanel" style="display:none;">
+      <div class="row">
+        <button class="btn" id="createRoomBtn">Create Room</button>
+        <input type="text" id="joinCodeInput" placeholder="Room code" maxlength="5" style="text-transform:uppercase;" />
+        <button class="btn secondary" id="joinRoomBtn">Join Room</button>
+      </div>
+      <div id="roomInfo" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="panel" style="text-align:center;">
+      <div class="reversi-hud">
+        <div>⚫ Black: <span id="blackCount">2</span></div>
+        <div>⚪ White: <span id="whiteCount">2</span></div>
+      </div>
+      <p class="status-line" id="status">Black's turn</p>
+      <div class="reversi-board" id="board"></div>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="resetBtn">Restart</button>
+        <button class="btn danger" id="resignBtn" style="display:none;">Resign</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="../js/socket-client.js"></script>
+  <script src="../js/games/reversi-engine.js"></script>
+  <script src="../js/games/reversi.js"></script>
+</body>
+</html>

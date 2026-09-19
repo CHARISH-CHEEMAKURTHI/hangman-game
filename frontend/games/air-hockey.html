@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Air Hockey - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .ah-hud { display: flex; justify-content: center; gap: 60px; font-size: 1.6rem; font-weight: 800; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🏒 Air Hockey</h1>
+    <div class="panel" style="text-align:center;">
+      <div class="ah-hud"><span id="score1">0</span><span id="score2">0</span></div>
+      <p class="status-line" id="status">Player 1 (bottom): WASD &nbsp; Player 2 (top): Arrow keys. Press Space to start.</p>
+      <canvas id="canvas" width="420" height="620"></canvas>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="restartBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/games/air-hockey.js"></script>
+</body>
+</html>

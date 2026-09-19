@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tic-Tac-Toe - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .ttt-board {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(3, 90px);
+    gap: 8px;
+    justify-content: center;
+    margin: 20px auto;
+  }
+  .ttt-cell {
+    background: #0b0e1c;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    font-size: 2.6rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--accent-2);
+  }
+  .ttt-cell.o { color: var(--bad); }
+  .ttt-cell.win { background: rgba(46, 204, 113, 0.25); }
+  .ttt-cell:hover { background: #141a30; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>❌ Tic-Tac-Toe</h1>
+
+    <div class="mode-tabs">
+      <button data-mode="local" class="active">Local 2P</button>
+      <button data-mode="ai">vs AI</button>
+      <button data-mode="online">Online 1v1</button>
+    </div>
+
+    <div class="panel" id="onlinePanel" style="display:none;">
+      <div id="onlineLobby">
+        <div class="row">
+          <button class="btn" id="createRoomBtn">Create Room</button>
+          <input type="text" id="joinCodeInput" placeholder="Room code" maxlength="5" style="text-transform:uppercase;" />
+          <button class="btn secondary" id="joinRoomBtn">Join Room</button>
+        </div>
+        <div id="roomInfo" style="margin-top:14px;"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <p class="status-line" id="status">X's turn</p>
+      <div class="ttt-board" id="board"></div>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="resetBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="../js/socket-client.js"></script>
+  <script src="../js/games/tictactoe.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hangman - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .hangman-word { font-family: Consolas, monospace; font-size: 2.2rem; letter-spacing: 10px; text-align: center; margin: 16px 0; }
+  .keyboard { display: grid; grid-template-columns: repeat(13, 1fr); gap: 6px; max-width: 620px; margin: 0 auto; }
+  .keyboard button {
+    padding: 10px 0; border-radius: 8px; border: none; background: var(--panel-light);
+    color: var(--text); font-weight: 700; cursor: pointer;
+  }
+  .keyboard button.correct { background: var(--good); color: #0b0e1c; }
+  .keyboard button.wrong { background: var(--bad); color: #0b0e1c; }
+  .keyboard button:disabled { opacity: 0.5; cursor: not-allowed; }
+  .set-word-box { text-align: center; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🪢 Hangman</h1>
+
+    <div class="mode-tabs">
+      <button data-mode="solo" class="active">Solo</button>
+      <button data-mode="online">Online 1v1</button>
+    </div>
+
+    <div class="panel" id="onlinePanel" style="display:none;">
+      <div class="row">
+        <button class="btn" id="createRoomBtn">Create Room</button>
+        <input type="text" id="joinCodeInput" placeholder="Room code" maxlength="5" style="text-transform:uppercase;" />
+        <button class="btn secondary" id="joinRoomBtn">Join Room</button>
+      </div>
+      <div id="roomInfo" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="panel">
+      <p class="status-line" id="status"></p>
+      <canvas id="canvas" width="300" height="260" style="margin:0 auto;"></canvas>
+
+      <div id="setWordBox" class="set-word-box" style="display:none;">
+        <p>Set a secret word for your opponent to guess:</p>
+        <input type="text" id="secretWordInput" placeholder="e.g. pineapple" maxlength="20" />
+        <button class="btn" id="setWordBtn">Set Word</button>
+      </div>
+
+      <div class="hangman-word" id="wordDisplay"></div>
+      <div class="keyboard" id="keyboard"></div>
+
+      <div class="row" style="justify-content:center; margin-top:14px;">
+        <button class="btn secondary" id="resetBtn">New Word</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="../js/socket-client.js"></script>
+  <script src="../js/games/hangman.js"></script>
+</body>
+</html>

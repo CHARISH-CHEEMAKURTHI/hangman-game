@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Carrom - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .carrom-hud { display: flex; justify-content: center; gap: 40px; font-weight: 700; margin-bottom: 10px; }
+  .carrom-hud .active { color: var(--good); }
+  #strikerSlider { width: 300px; display: block; margin: 12px auto 0; }
+  .carrom-hint { font-size: 0.82rem; color: var(--text-dim); text-align: center; margin-top: 8px; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🟤 Carrom</h1>
+    <div class="panel" style="text-align:center;">
+      <div class="carrom-hud">
+        <span id="p1Score">Player 1: 0</span>
+        <span id="p2Score">Player 2: 0</span>
+      </div>
+      <p class="status-line" id="status">Player 1's turn — position the striker, then drag back to shoot.</p>
+      <canvas id="canvas" width="520" height="520"></canvas>
+      <input type="range" id="strikerSlider" min="-1" max="1" step="0.01" value="0" />
+      <p class="carrom-hint">Slide to position the striker, then click-drag on the board (away from the striker) and release to shoot.</p>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="restartBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/games/carrom.js"></script>
+</body>
+</html>

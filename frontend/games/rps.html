@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rock Paper Scissors - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .rps-choices { display: flex; gap: 16px; justify-content: center; margin: 20px 0; }
+  .rps-choice {
+    font-size: 2.6rem;
+    background: var(--bg-alt);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 18px 22px;
+    cursor: pointer;
+  }
+  .rps-choice:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .rps-choice.picked { border-color: var(--good); }
+  .rps-choice:disabled { opacity: 0.4; cursor: not-allowed; }
+  .rps-scoreboard { display: flex; justify-content: center; gap: 40px; font-size: 1.4rem; font-weight: 700; margin: 10px 0; }
+  .rps-reveal { text-align: center; font-size: 2rem; margin: 10px 0; min-height: 2.4em; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>✂️ Rock Paper Scissors</h1>
+    <p>Online only &mdash; best of 5 rounds. Create a room or join a friend's.</p>
+
+    <div class="panel" id="lobbyPanel">
+      <div class="row">
+        <button class="btn" id="createRoomBtn">Create Room</button>
+        <input type="text" id="joinCodeInput" placeholder="Room code" maxlength="5" style="text-transform:uppercase;" />
+        <button class="btn secondary" id="joinRoomBtn">Join Room</button>
+      </div>
+      <div id="roomInfo" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="panel" id="gamePanel" style="display:none;">
+      <p class="status-line" id="status">Waiting for both players...</p>
+      <div class="rps-scoreboard">
+        <div>You: <span id="myScore">0</span></div>
+        <div>Opponent: <span id="oppScore">0</span></div>
+      </div>
+      <div class="rps-reveal" id="reveal"></div>
+      <div class="rps-choices">
+        <button class="rps-choice" data-pick="rock">🪨</button>
+        <button class="rps-choice" data-pick="paper">📄</button>
+        <button class="rps-choice" data-pick="scissors">✂️</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="../js/socket-client.js"></script>
+  <script src="../js/games/rps.js"></script>
+</body>
+</html>

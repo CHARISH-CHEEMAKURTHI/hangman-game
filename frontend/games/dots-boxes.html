@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dots and Boxes - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .db-hud { display: flex; justify-content: center; gap: 40px; font-weight: 700; margin-bottom: 10px; }
+  .db-hud .p1 { color: #00d2ff; }
+  .db-hud .p2 { color: #ff8f6c; }
+  canvas#dbCanvas { touch-action: none; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🔲 Dots and Boxes</h1>
+
+    <div class="mode-tabs">
+      <button data-mode="local" class="active">Local 2P</button>
+      <button data-mode="online">Online 1v1</button>
+    </div>
+
+    <div class="panel" id="onlinePanel" style="display:none;">
+      <div class="row">
+        <button class="btn" id="createRoomBtn">Create Room</button>
+        <input type="text" id="joinCodeInput" placeholder="Room code" maxlength="5" style="text-transform:uppercase;" />
+        <button class="btn secondary" id="joinRoomBtn">Join Room</button>
+      </div>
+      <div id="roomInfo" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="panel" style="text-align:center;">
+      <div class="db-hud">
+        <div class="p1">Player 1: <span id="score1">0</span></div>
+        <div class="p2">Player 2: <span id="score2">0</span></div>
+      </div>
+      <p class="status-line" id="status">Player 1's turn — click an edge to draw it.</p>
+      <canvas id="dbCanvas" width="420" height="420"></canvas>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="resetBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="../js/socket-client.js"></script>
+  <script src="../js/games/dots-boxes-engine.js"></script>
+  <script src="../js/games/dots-boxes.js"></script>
+</body>
+</html>

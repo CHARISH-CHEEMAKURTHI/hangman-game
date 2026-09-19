@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Connect Four - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .c4-board {
+    display: inline-grid;
+    grid-template-columns: repeat(7, 52px);
+    grid-template-rows: repeat(6, 52px);
+    gap: 6px;
+    background: #12183a;
+    padding: 10px;
+    border-radius: 12px;
+    margin: 20px auto;
+  }
+  .c4-board-wrap { text-align: center; }
+  .c4-cell {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: #0b0e1c;
+    cursor: pointer;
+  }
+  .c4-cell.r { background: radial-gradient(circle at 35% 30%, #ff8f8f, var(--bad)); }
+  .c4-cell.y { background: radial-gradient(circle at 35% 30%, #fff3b0, var(--warn)); }
+  .c4-cell.win { outline: 3px solid var(--good); }
+  .c4-cols {
+    display: inline-grid;
+    grid-template-columns: repeat(7, 52px);
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+  .c4-col-btn {
+    height: 28px;
+    background: var(--panel-light);
+    border: none;
+    border-radius: 6px;
+    color: var(--text-dim);
+    cursor: pointer;
+  }
+  .c4-col-btn:hover { color: var(--text); background: var(--accent); }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🔴 Connect Four</h1>
+
+    <div class="mode-tabs">
+      <button data-mode="local" class="active">Local 2P</button>
+      <button data-mode="ai">vs AI</button>
+      <button data-mode="online">Online 1v1</button>
+    </div>
+
+    <div class="panel" id="onlinePanel" style="display:none;">
+      <div class="row">
+        <button class="btn" id="createRoomBtn">Create Room</button>
+        <input type="text" id="joinCodeInput" placeholder="Room code" maxlength="5" style="text-transform:uppercase;" />
+        <button class="btn secondary" id="joinRoomBtn">Join Room</button>
+      </div>
+      <div id="roomInfo" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="panel">
+      <p class="status-line" id="status">Red's turn</p>
+      <div class="c4-board-wrap">
+        <div class="c4-cols" id="colButtons"></div>
+        <div class="c4-board" id="board"></div>
+      </div>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="resetBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="../js/socket-client.js"></script>
+  <script src="../js/games/connect4.js"></script>
+</body>
+</html>
