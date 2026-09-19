@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flappy Bird - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .flappy-hud { display: flex; justify-content: center; gap: 30px; font-weight: 700; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🐤 Flappy Bird</h1>
+    <div class="panel" style="text-align:center;">
+      <div class="flappy-hud">
+        <div>Score: <span id="score">0</span></div>
+        <div>Best: <span id="best">0</span></div>
+      </div>
+      <p class="status-line" id="status">Click, tap, or press Space to flap.</p>
+      <canvas id="canvas" width="360" height="520"></canvas>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="restartBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/games/flappy.js"></script>
+</body>
+</html>

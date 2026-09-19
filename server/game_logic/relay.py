@@ -1,8 +1,11 @@
-"""Generic client-authoritative relay used for Chess online play.
+"""Generic client-authoritative relay used for Chess, Checkers, Reversi
+and Dots and Boxes online play.
 
 The server only enforces whose turn it is and relays the move payload
 verbatim to the other player; move legality is validated client-side by
-the full chess engine in js/games/chess.js.
+each game's own rules engine. A move may set `keep_turn: true` so the
+same player continues (a checkers multi-jump continuation, or a Dots and
+Boxes move that completed a box) instead of flipping to the opponent.
 """
 
 
@@ -19,7 +22,7 @@ def apply_move(state, player_index, move, players):
     state["last_move"] = move
     if move.get("game_over"):
         state["winner"] = move.get("winner_index", player_index)
-    else:
+    elif not move.get("keep_turn"):
         state["turn"] = 1 - state["turn"]
     return state, None
 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Trivia Quiz - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .trivia-question { font-size: 1.3rem; font-weight: 700; text-align: center; margin: 16px 0; }
+  .trivia-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 560px; margin: 0 auto; }
+  .trivia-option {
+    padding: 16px; border-radius: 10px; background: var(--bg-alt); border: 2px solid rgba(255,255,255,0.1);
+    cursor: pointer; font-size: 1rem; text-align: left;
+  }
+  .trivia-option:hover { border-color: var(--accent); }
+  .trivia-option.selected { border-color: var(--accent-2); }
+  .trivia-option.correct { background: rgba(46, 204, 113, 0.25); border-color: var(--good); }
+  .trivia-option.wrong { background: rgba(255, 107, 107, 0.25); border-color: var(--bad); }
+  .trivia-option:disabled, .trivia-option.locked { cursor: default; opacity: 0.85; }
+  .trivia-leaderboard { list-style: none; padding: 0; max-width: 400px; margin: 10px auto; }
+  .trivia-leaderboard li { display: flex; justify-content: space-between; background: var(--bg-alt); padding: 8px 14px; border-radius: 8px; margin-bottom: 6px; }
+  .trivia-progress { text-align: center; color: var(--text-dim); margin-bottom: 6px; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🧠 Trivia Quiz</h1>
+    <p>Group quiz for up to 6 players — answer fast for more points!</p>
+
+    <div class="panel" id="lobbyPanel">
+      <div class="row">
+        <button class="btn" id="createRoomBtn">Create Room</button>
+        <input type="text" id="joinCodeInput" placeholder="Room code" maxlength="5" style="text-transform:uppercase;" />
+        <button class="btn secondary" id="joinRoomBtn">Join Room</button>
+      </div>
+      <div id="roomInfo" style="margin-top:14px;"></div>
+      <button class="btn" id="startGameBtn" style="display:none; margin-top:10px;">Start Game</button>
+    </div>
+
+    <div class="panel" id="gamePanel" style="display:none;">
+      <p class="status-line" id="status"></p>
+      <div class="trivia-progress" id="progress"></div>
+      <div class="trivia-question" id="questionText"></div>
+      <div class="trivia-options" id="options"></div>
+      <ul class="trivia-leaderboard" id="leaderboard"></ul>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn" id="nextBtn" style="display:none;">Next Question</button>
+      </div>
+    </div>
+
+    <div class="panel" id="finishPanel" style="display:none; text-align:center;">
+      <h2>Final Results</h2>
+      <ul class="trivia-leaderboard" id="finalLeaderboard"></ul>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="../js/socket-client.js"></script>
+  <script src="../js/games/trivia.js"></script>
+</body>
+</html>

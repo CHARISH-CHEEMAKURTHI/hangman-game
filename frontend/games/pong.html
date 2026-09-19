@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pong - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .pong-hud { display: flex; justify-content: center; gap: 60px; font-size: 1.6rem; font-weight: 800; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🏓 Pong</h1>
+    <div class="mode-tabs">
+      <button data-mode="local" class="active">Local 2P</button>
+      <button data-mode="ai">vs AI</button>
+    </div>
+    <div class="panel" style="text-align:center;">
+      <div class="pong-hud"><span id="score1">0</span><span id="score2">0</span></div>
+      <p class="status-line" id="status">Player 1: W/S &nbsp; Player 2: Arrow Up/Down. Press Space to start.</p>
+      <canvas id="canvas" width="600" height="400"></canvas>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="restartBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/games/pong.js"></script>
+</body>
+</html>

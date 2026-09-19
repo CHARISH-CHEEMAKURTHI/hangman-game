@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Space Invaders - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .inv-hud { display: flex; justify-content: center; gap: 30px; font-weight: 700; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>👾 Space Invaders</h1>
+    <div class="panel" style="text-align:center;">
+      <div class="inv-hud">
+        <div>Score: <span id="score">0</span></div>
+        <div>Lives: <span id="lives">3</span></div>
+        <div>Wave: <span id="wave">1</span></div>
+        <div>Best: <span id="best">0</span></div>
+      </div>
+      <p class="status-line" id="status">Arrow keys / A-D to move, Space to shoot.</p>
+      <canvas id="canvas" width="480" height="480"></canvas>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="restartBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/games/space-invaders.js"></script>
+</body>
+</html>

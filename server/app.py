@@ -12,7 +12,7 @@ import string
 from flask import Flask, request
 from flask_socketio import SocketIO, join_room, leave_room, emit
 
-from game_logic import tictactoe, connect_four, rps, rummy, hangman_online, relay
+from game_logic import tictactoe, connect_four, rps, rummy, hangman_online, relay, battleship, ludo, trivia
 
 FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend")
 
@@ -26,7 +26,13 @@ GAME_MODULES = {
     "rps": rps,
     "hangman": hangman_online,
     "chess": relay,
+    "checkers": relay,
+    "reversi": relay,
+    "dotsandboxes": relay,
+    "battleship": battleship,
     "rummy": rummy,
+    "ludo": ludo,
+    "trivia": trivia,
 }
 
 MAX_PLAYERS = {
@@ -35,11 +41,20 @@ MAX_PLAYERS = {
     "rps": 2,
     "hangman": 2,
     "chess": 2,
+    "checkers": 2,
+    "reversi": 2,
+    "dotsandboxes": 2,
+    "battleship": 2,
     "rummy": 6,
+    "ludo": 4,
+    "trivia": 6,
 }
 
-MIN_PLAYERS = {"rummy": 2}
-AUTO_START_GAMES = {"tictactoe", "connect4", "rps", "hangman", "chess"}
+MIN_PLAYERS = {"rummy": 2, "ludo": 2, "trivia": 2}
+AUTO_START_GAMES = {
+    "tictactoe", "connect4", "rps", "hangman", "chess",
+    "checkers", "reversi", "dotsandboxes", "battleship",
+}
 
 # code -> room dict
 ROOMS = {}

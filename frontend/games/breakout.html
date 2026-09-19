@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Breakout - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .brk-hud { display: flex; justify-content: center; gap: 30px; font-weight: 700; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🧱 Breakout</h1>
+    <div class="panel" style="text-align:center;">
+      <div class="brk-hud">
+        <div>Score: <span id="score">0</span></div>
+        <div>Lives: <span id="lives">3</span></div>
+        <div>Best: <span id="best">0</span></div>
+      </div>
+      <p class="status-line" id="status">Move mouse / arrow keys to steer paddle. Click or press Space to launch.</p>
+      <canvas id="canvas" width="480" height="420"></canvas>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="restartBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/games/breakout.js"></script>
+</body>
+</html>

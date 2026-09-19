@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Minesweeper - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .mine-hud { display: flex; justify-content: center; gap: 30px; font-weight: 700; margin-bottom: 10px; }
+  .mine-board { display: inline-grid; gap: 2px; background: #12183a; padding: 8px; border-radius: 10px; margin: 0 auto; }
+  .mine-cell {
+    width: 28px; height: 28px; background: var(--panel-light); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 800;
+    cursor: pointer; user-select: none;
+  }
+  .mine-cell.revealed { background: #0b0e1c; cursor: default; }
+  .mine-cell.mine { background: var(--bad); }
+  .mine-cell.flag { background: #ffd166; color: #222; }
+  .n1 { color: #6cd0ff; } .n2 { color: #6cff9d; } .n3 { color: #ff8f6c; }
+  .n4 { color: #a6ecff; } .n5 { color: #ffd166; } .n6 { color: #ff6bd6; } .n7, .n8 { color: #fff; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>💣 Minesweeper</h1>
+    <div class="mode-tabs">
+      <button data-level="easy" class="active">Easy 9x9</button>
+      <button data-level="medium">Medium 12x12</button>
+      <button data-level="hard">Hard 16x16</button>
+    </div>
+    <div class="panel" style="text-align:center;">
+      <div class="mine-hud">
+        <div>Mines left: <span id="mineCount">0</span></div>
+        <div>Time: <span id="timer">0</span>s</div>
+      </div>
+      <p class="status-line" id="status">Left click to reveal, right click to flag.</p>
+      <div class="mine-board" id="board"></div>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="restartBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/games/minesweeper.js"></script>
+</body>
+</html>

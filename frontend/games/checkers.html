@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Checkers - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .checkers-board {
+    display: inline-grid;
+    grid-template-columns: repeat(8, 56px);
+    grid-template-rows: repeat(8, 56px);
+    margin: 16px auto;
+    border: 4px solid #12183a;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .checkers-sq { width: 56px; height: 56px; position: relative; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  .checkers-sq.light { background: #2a3160; }
+  .checkers-sq.dark { background: #171b38; }
+  .checkers-sq.selected { outline: 3px solid var(--accent-2); outline-offset: -3px; }
+  .checkers-sq .dot { width: 16px; height: 16px; border-radius: 50%; background: rgba(0, 210, 255, 0.55); position: absolute; }
+  .checker-piece { width: 40px; height: 40px; border-radius: 50%; box-shadow: inset 0 -4px 6px rgba(0,0,0,0.4); }
+  .checker-piece.w { background: radial-gradient(circle at 35% 30%, #fff, #cfd3f0); }
+  .checker-piece.b { background: radial-gradient(circle at 35% 30%, #555, #111); }
+  .checker-piece.king::after { content: "♛"; display: flex; align-items: center; justify-content: center; height: 100%; font-size: 1.3rem; color: #ffd166; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>⚫ Checkers</h1>
+
+    <div class="mode-tabs">
+      <button data-mode="local" class="active">Local 2P</button>
+      <button data-mode="online">Online 1v1</button>
+    </div>
+
+    <div class="panel" id="onlinePanel" style="display:none;">
+      <div class="row">
+        <button class="btn" id="createRoomBtn">Create Room</button>
+        <input type="text" id="joinCodeInput" placeholder="Room code" maxlength="5" style="text-transform:uppercase;" />
+        <button class="btn secondary" id="joinRoomBtn">Join Room</button>
+      </div>
+      <div id="roomInfo" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="panel" style="text-align:center;">
+      <p class="status-line" id="status">White's turn</p>
+      <div class="checkers-board" id="board"></div>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="resetBtn">Restart</button>
+        <button class="btn danger" id="resignBtn" style="display:none;">Resign</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="../js/socket-client.js"></script>
+  <script src="../js/games/checkers-engine.js"></script>
+  <script src="../js/games/checkers.js"></script>
+</body>
+</html>
