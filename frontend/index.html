@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcade Hub - Multi-Game Platform</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="top-bar">
+    <a class="brand" href="/">
+      <span class="logo">🎮</span>
+      <span>Arcade <span class="gradient">Hub</span></span>
+    </a>
+    <div class="nickname-box">
+      <label for="nickname">Playing as</label>
+      <input type="text" id="nickname" maxlength="20" placeholder="Your name" />
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="hero">
+      <h1>One platform, many small games</h1>
+      <p>
+        Play solo, battle a friend on the same screen, challenge someone online 1v1,
+        or team up for group games like Rummy. Pick a game below to get started.
+      </p>
+    </section>
+
+    <div class="game-grid" id="gameGrid"></div>
+  </div>
+
+  <footer>Arcade Hub &middot; built on top of the original Hangman project</footer>
+
+  <script>
+    const GAMES = [
+      { key: "hangman", name: "Hangman", emoji: "🪢", href: "games/hangman.html",
+        desc: "Guess the word before the drawing is complete. Play solo or set a secret word for a friend online.",
+        tags: ["Solo", "Online 1v1"] },
+      { key: "tictactoe", name: "Tic-Tac-Toe", emoji: "❌", href: "games/tictactoe.html",
+        desc: "The classic 3x3 grid game. Play a friend locally, challenge the AI, or go online 1v1.",
+        tags: ["Local 2P", "vs AI", "Online 1v1"] },
+      { key: "connect4", name: "Connect Four", emoji: "🔴", href: "games/connect4.html",
+        desc: "Drop discs and line up four in a row. Local, vs AI, or online multiplayer.",
+        tags: ["Local 2P", "vs AI", "Online 1v1"] },
+      { key: "chess", name: "Chess", emoji: "♟️", href: "games/chess.html",
+        desc: "Full rules chess with check, checkmate, castling, en passant and promotion.",
+        tags: ["Local 2P", "Online 1v1"] },
+      { key: "rps", name: "Rock Paper Scissors", emoji: "✂️", href: "games/rps.html",
+        desc: "Best-of-5 online showdown against a friend.",
+        tags: ["Online 1v1"] },
+      { key: "snake", name: "Snake", emoji: "🐍", href: "games/snake.html",
+        desc: "Classic grid snake. Eat, grow, don't hit yourself.",
+        tags: ["Solo"] },
+      { key: "memory", name: "Memory Match", emoji: "🧠", href: "games/memory.html",
+        desc: "Flip cards and find every pair. Play solo or pass-and-play with a friend.",
+        tags: ["Solo", "Local 2P"] },
+      { key: "runner", name: "Subway Dash", emoji: "🏃", href: "games/runner.html",
+        desc: "Lane-switching endless runner. Dodge trains, jump, slide, and beat your high score.",
+        tags: ["Solo"] },
+      { key: "tank", name: "Tank Battle", emoji: "🛡️", href: "games/tank-battle.html",
+        desc: "Arcade tank shooter. Battle a friend split-keyboard or take on the AI.",
+        tags: ["Local 2P", "vs AI"] },
+      { key: "carrom", name: "Carrom", emoji: "🟤", href: "games/carrom.html",
+        desc: "Simplified 2D physics carrom board. Aim the striker and pocket your coins.",
+        tags: ["Local 2P"] },
+      { key: "rummy", name: "Rummy", emoji: "🃏", href: "games/rummy.html",
+        desc: "13-card Rummy for up to 6 players online, with team vs team scoring.",
+        tags: ["Online Group", "Team vs Team"] },
+    ];
+
+    const tagClass = (tag) => {
+      if (tag.toLowerCase().includes("online")) return "tag multiplayer";
+      if (tag.toLowerCase().includes("team")) return "tag team";
+      return "tag";
+    };
+
+    const grid = document.getElementById("gameGrid");
+    grid.innerHTML = GAMES.map(
+      (g) => `
+      <a class="game-card" href="${g.href}">
+        <span class="emoji">${g.emoji}</span>
+        <h3>${g.name}</h3>
+        <p>${g.desc}</p>
+        <div class="tags">${g.tags.map((t) => `<span class="${tagClass(t)}">${t}</span>`).join("")}</div>
+      </a>`
+    ).join("");
+
+    const nickInput = document.getElementById("nickname");
+    nickInput.value = localStorage.getItem("mgp_nickname") || "";
+    nickInput.addEventListener("input", () => {
+      localStorage.setItem("mgp_nickname", nickInput.value.trim() || "Player");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tank Battle - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .tank-hud { display: flex; justify-content: space-between; max-width: 800px; margin: 0 auto 10px; font-weight: 700; }
+  .tank-hud .p1 { color: #6cd0ff; }
+  .tank-hud .p2 { color: #ff8f6c; }
+  .controls-hint { font-size: 0.82rem; color: var(--text-dim); text-align: center; margin-top: 8px; }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🛡️ Tank Battle</h1>
+
+    <div class="mode-tabs">
+      <button data-mode="local" class="active">Local 2P</button>
+      <button data-mode="ai">vs AI</button>
+    </div>
+
+    <div class="panel" style="text-align:center;">
+      <div class="tank-hud">
+        <span class="p1">Player 1 HP: <span id="hp1">3</span></span>
+        <span class="p2" id="p2Label">Player 2 HP: <span id="hp2">3</span></span>
+      </div>
+      <p class="status-line" id="status">Press Space or click to begin!</p>
+      <canvas id="canvas" width="800" height="480"></canvas>
+      <p class="controls-hint">Player 1: WASD to move/turn, F to fire &nbsp;|&nbsp; Player 2: Arrow keys to move/turn, Enter to fire</p>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="restartBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/games/tank-battle.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Snake - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .snake-hud { display: flex; justify-content: center; gap: 30px; font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+  .snake-controls { display: none; grid-template-columns: repeat(3, 56px); grid-template-rows: repeat(2, 56px); gap: 8px; justify-content: center; margin-top: 16px; }
+  .snake-controls button { font-size: 1.4rem; background: var(--panel-light); border: none; border-radius: 10px; color: var(--text); }
+  @media (max-width: 640px) { .snake-controls { display: grid; } }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🐍 Snake</h1>
+    <div class="panel" style="text-align:center;">
+      <div class="snake-hud">
+        <div>Score: <span id="score">0</span></div>
+        <div>Best: <span id="best">0</span></div>
+      </div>
+      <p class="status-line" id="status">Use arrow keys / WASD to move. Press Space to start.</p>
+      <canvas id="canvas" width="480" height="480"></canvas>
+      <div class="snake-controls" id="touchControls">
+        <span></span><button data-dir="up">↑</button><span></span>
+        <button data-dir="left">←</button><button data-dir="down">↓</button><button data-dir="right">→</button>
+      </div>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="restartBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/games/snake.js"></script>
+</body>
+</html>

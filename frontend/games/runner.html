@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Subway Dash - Arcade Hub</title>
+<link rel="stylesheet" href="../css/style.css" />
+<style>
+  .runner-hud { display: flex; justify-content: center; gap: 30px; font-weight: 700; margin-bottom: 10px; }
+  .runner-controls { display: none; grid-template-columns: repeat(3, 64px); gap: 8px; justify-content: center; margin-top: 16px; }
+  .runner-controls button { font-size: 1.3rem; background: var(--panel-light); border: none; border-radius: 10px; color: var(--text); padding: 10px 0; }
+  @media (max-width: 640px) { .runner-controls { display: grid; } }
+</style>
+</head>
+<body>
+  <div class="game-page">
+    <a class="back-link" href="../index.html">&larr; Back to Arcade Hub</a>
+    <h1>🏃 Subway Dash</h1>
+    <div class="panel" style="text-align:center;">
+      <div class="runner-hud">
+        <div>Score: <span id="score">0</span></div>
+        <div>Best: <span id="best">0</span></div>
+      </div>
+      <p class="status-line" id="status">Arrow keys / WASD: switch lanes, jump, duck. Press Space to start.</p>
+      <canvas id="canvas" width="480" height="560"></canvas>
+      <div class="runner-controls" id="touchControls">
+        <button data-act="left">⭠</button><button data-act="jump">⭡ Jump</button><button data-act="right">⭢</button>
+        <span></span><button data-act="duck">⭣ Duck</button><span></span>
+      </div>
+      <div class="row" style="justify-content:center; margin-top:10px;">
+        <button class="btn secondary" id="restartBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+  <script src="../js/games/runner.js"></script>
+</body>
+</html>
